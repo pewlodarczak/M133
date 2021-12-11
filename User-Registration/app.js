@@ -17,7 +17,7 @@ var loggedinUser;
 
 //Connecting database
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
-	console.log('connected to ' + process.env.MONGO_URL)
+	console.log(`Connected to ${process.env.MONGO_URL}`)
     mongoose.use
 });
 
@@ -65,25 +65,22 @@ app.get("/", (req,res) =>{
 })
 
 app.get("/welcomeuser",isLoggedIn ,async(req,res) => {
-    //res.render("welcomeuser");
 	if(req.user){
         let user = await User.findOne({username: req.user.username});
 		loggedinUser = user.username;
         res.render('welcomeuser', {loggedinUser});
     } else {
-    res.render('welcomeuser2');
+	    res.render('welcomeuser2');
     }
 })
 
 app.get('/uploadImages', isLoggedIn, (req, res) => {
 	imgModel.find({}, (err, items) => {
 		if (err) {
-			//console.log('storing ERROR')
 			console.log(err);
 			res.status(500).send('An error occurred', err);
 		}
 		else {
-			//res.render('imagesPage', { items: items });
 			res.render('uploadImages', { items: items });
 		}
 	});
@@ -111,20 +108,7 @@ app.post('/', upload.single('image'), (req, res, next) => {
 		}
 	});
 });
-/*
-app.get('/', (req, res) => {
-	console.log("========> Ever get here?");
-	imgModel.find({}, (err, items) => {
-		if (err) {
-    		console.log(err);
-			res.status(500).send('An error occurred', err);
-		}
-		else {
-			res.render('uploadImages', { items: items });
-		}
-	});
-});
-*/
+
 app.get('/userimages', (req, res) => {
 	imgModel.find({'userid': loggedinUser}, (err, items) => {
 		if (err) {
@@ -198,7 +182,7 @@ app.listen(process.env.PORT ||3000,function (err) {
     if(err){
         console.log(err);
     }else {
-        console.log("Server Started At Port " + process.env.PORT);
+        console.log(`Server Started At Port ${process.env.PORT}`);
     }
       
 });
