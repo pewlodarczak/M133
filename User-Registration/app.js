@@ -139,10 +139,10 @@ app.get("/login",(req,res)=>{
     res.render("login");
 });
 
-app.post("/login",passport.authenticate("local",{
-    successRedirect:"/welcomeuser",
-    failureRedirect:"/login"
-}),function (req, res){
+app.post("/login", passport.authenticate("local", {
+	successRedirect: "/welcomeuser",
+	failureRedirect: "/login"
+}), function (req, res) {
 
 });
 
