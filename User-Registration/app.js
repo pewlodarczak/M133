@@ -15,6 +15,10 @@ var path = require('path');
 
 var loggedinUser;
 
+/*
+	TODO #1 Delete photos
+*/
+
 //Connecting database
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
 	console.log(`Connected to ${process.env.MONGO_URL}`)
