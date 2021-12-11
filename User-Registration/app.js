@@ -13,6 +13,8 @@ const express               =  require('express'),
 var fs = require('fs');
 var path = require('path');
 
+var loggedinUser;
+
 //Connecting database
 mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
 	console.log('connected to ' + process.env.MONGO_URL)
@@ -62,8 +64,15 @@ app.get("/", (req,res) =>{
     res.render("home");
 })
 
-app.get("/userprofile",isLoggedIn ,(req,res) => {
-    res.render("userprofile");
+app.get("/welcomeuser",isLoggedIn ,async(req,res) => {
+    //res.render("welcomeuser");
+	if(req.user){
+        let user = await User.findOne({username: req.user.username});
+		loggedinUser = user.username;
+        res.render('welcomeuser', {loggedinUser});
+    } else {
+    res.render('welcomeuser2');
+    }
 })
 
 app.get('/uploadImages', isLoggedIn, (req, res) => {
@@ -81,11 +90,11 @@ app.get('/uploadImages', isLoggedIn, (req, res) => {
 });
 
 app.post('/', upload.single('image'), (req, res, next) => {
-
 	console.log(req.name)
 	var obj = {
 		name: req.body.name,
 		desc: req.body.desc,
+		userid: loggedinUser,
 		img: {
 			data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
 			contentType: 'image/png'
@@ -103,8 +112,8 @@ app.post('/', upload.single('image'), (req, res, next) => {
 	});
 });
 
-
 app.get('/', (req, res) => {
+	console.log("========> Ever get here?");
 	imgModel.find({}, (err, items) => {
 		if (err) {
     		console.log(err);
@@ -117,7 +126,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/userimages', (req, res) => {
-	imgModel.find({}, (err, items) => {
+	imgModel.find({'userid': loggedinUser}, (err, items) => {
 		if (err) {
 			console.log(err);
 			res.status(500).send('An error occurred', err);
@@ -128,13 +137,26 @@ app.get('/userimages', (req, res) => {
 	});
 });
 
+app.get('/userprofile', async(req, res) => {
+	let user = await User.findOne({username: req.user.username});
+	User.find({}, (err, items) => {
+		if (err) {
+			console.log(err);
+			res.status(500).send('An error occurred', err);
+		}
+		else {
+			res.render('userprofile', { user });
+		}
+	});
+});
+
 //Auth Routes
 app.get("/login",(req,res)=>{
     res.render("login");
 });
 
 app.post("/login",passport.authenticate("local",{
-    successRedirect:"/userprofile",
+    successRedirect:"/welcomeuser",
     failureRedirect:"/login"
 }),function (req, res){
 

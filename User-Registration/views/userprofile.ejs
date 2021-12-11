@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logged in</title>
+    <title>User Profile</title>
     <link rel="stylesheet" href="/views/style.css">
 </head>
 <body>
     <h1>
-        User Apps
-    </h1>
-    <p>
-        <div>
-        After Login the user will reach here.
-        </div>
-    </p>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/userimages">Show Images</a></li>
-        <li><a href="/uploadImages">Upload Images</a></li>
-        <li><a href="/logout">Logout</a></li>
-    </ul>
+		User Info
+	</h1>
+	<div>
+		<div>
+			<div>
+				<h5><%= user.username %></h5>
+                <p><%= user._id %></p>
+    		</div>
+		</div>
+	</div>
+	<div>
+		<input type="button" onclick="location.href='/welcomeuser';" value="Main Page" />
+	</div>
 </body>
 </html>
