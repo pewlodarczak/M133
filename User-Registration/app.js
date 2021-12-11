@@ -111,7 +111,7 @@ app.post('/', upload.single('image'), (req, res, next) => {
 		}
 	});
 });
-
+/*
 app.get('/', (req, res) => {
 	console.log("========> Ever get here?");
 	imgModel.find({}, (err, items) => {
@@ -124,7 +124,7 @@ app.get('/', (req, res) => {
 		}
 	});
 });
-
+*/
 app.get('/userimages', (req, res) => {
 	imgModel.find({'userid': loggedinUser}, (err, items) => {
 		if (err) {
