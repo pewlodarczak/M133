@@ -1,0 +1,36 @@
+echo "# M133" >> README.md
+git init
+git add README.md
+
+git config --global user.email "wlodarczak@gmail.com"
+git config --global user.name "Peter Wlodarczak"
+
+git commit -m "Initial release"
+
+git branch -M main
+git remote add origin https://github.com/pewlodarczak/M133.git
+git push -u origin main
+
+git remote add origin https://github.com/pewlodarczak/M133.git
+git branch -M main
+git push -u origin main
+
+git rm --cached Node
+git submodule add https://github.com/pewlodarczak/M133.git Node
+git add . && git commit -m "initial commit"
+
+############ NEW ###########
+git init -b main
+git add . && git commit -m "initial commit"
+
+git remote add origin https://github.com/pewlodarczak/M133.git
+git remote -v
+git push origin main
+
+git pull https://github.com/pewlodarczak/M133.git
+
+
+git clone "Initial release"
+git add * 
+git commit -m "Initial release"
+git push origin "main"

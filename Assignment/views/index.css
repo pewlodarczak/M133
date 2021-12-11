@@ -1,0 +1,7 @@
+body {
+    align-items : center;
+    background-size: cover;
+    background-image: url('/views/img/background.jpg');
+    font-family: 'Arial';
+    text-align: center;
+}

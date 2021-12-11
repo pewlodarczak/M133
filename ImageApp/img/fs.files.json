@@ -1,0 +1,12 @@
+[{
+  "_id": {
+    "$oid": "617bb7fa9df62ac14fb6b431"
+  },
+  "length": 2095023,
+  "chunkSize": 261120,
+  "uploadDate": {
+    "$date": "2021-10-29T08:59:38.369Z"
+  },
+  "filename": "1635497978275-m133-golf2.gif",
+  "contentType": "image/gif"
+}]
