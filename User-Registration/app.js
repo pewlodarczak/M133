@@ -17,6 +17,9 @@ var loggedinUser;
 
 /*
 	TODO #1 Delete photos
+		 #2 List buttons
+		 #3 Change password
+		 #4 Nav Menu
 */
 
 //Connecting database
@@ -39,8 +42,8 @@ app.use(bodyParser.urlencoded(
       { extended:true }
 ))
 
-//app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+//app.use(bodyParser.json())
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -68,7 +71,7 @@ app.get("/", (req,res) =>{
     res.render("home");
 })
 
-app.get("/welcomeuser",isLoggedIn ,async(req,res) => {
+app.get("/welcomeuser", isLoggedIn,async(req,res) => {
 	if(req.user){
         let user = await User.findOne({username: req.user.username});
 		loggedinUser = user.username;
@@ -76,6 +79,11 @@ app.get("/welcomeuser",isLoggedIn ,async(req,res) => {
     } else {
 	    res.render('welcomeuser2');
     }
+})
+
+app.get("/loginfailure", (req,res) => {
+		console.log("Login Failure")
+        res.render('loginfailure');
 })
 
 app.get('/uploadImages', isLoggedIn, (req, res) => {
@@ -91,7 +99,6 @@ app.get('/uploadImages', isLoggedIn, (req, res) => {
 });
 
 app.post('/', upload.single('image'), (req, res, next) => {
-	console.log(req.name)
 	var obj = {
 		name: req.body.name,
 		desc: req.body.desc,
@@ -113,7 +120,7 @@ app.post('/', upload.single('image'), (req, res, next) => {
 	});
 });
 
-app.get('/userimages', (req, res) => {
+app.get('/userimages', isLoggedIn, (req, res) => {
 	imgModel.find({'userid': loggedinUser}, (err, items) => {
 		if (err) {
 			console.log(err);
@@ -123,6 +130,19 @@ app.get('/userimages', (req, res) => {
 			res.render('displayImg', { items: items });
 		}
 	});
+});
+
+
+app.get("/delete/*",(req,res)=>{
+
+	const {id, name} = req.query;
+	imgModel.deleteOne({name: name}, function(err){
+		if(err){
+			res.redirect("/userimages")
+		} else {
+			res.redirect("/userimages")
+		}
+	 });
 });
 
 app.get('/userprofile', async(req, res) => {
@@ -145,7 +165,8 @@ app.get("/login",(req,res)=>{
 
 app.post("/login", passport.authenticate("local", {
 	successRedirect: "/welcomeuser",
-	failureRedirect: "/login"
+	failureRedirect: "/loginfailure"
+	//failureRedirect: "/welcomeuser"
 }), function (req, res) {
 
 });
@@ -178,6 +199,9 @@ function isLoggedIn(req,res,next) {
     }
     res.redirect("/login");
 }
+
+//var deleteRouter = require('./delete-route');
+//app.use('/', deleteRouter);
 
 app.use(express.static(__dirname));
 
