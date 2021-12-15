@@ -17,6 +17,7 @@ div {
 table {
     border:1px solid black;
     align-self: center;
+    width: 20%;
 }
 .center {
     margin-left: auto;
@@ -34,3 +35,17 @@ table {
 form {
     align-self: center;
 }
+
+label {
+    font-weight: bold;
+}
+
+.likes {
+    background-color: rgb(236, 238, 136);
+    font-family:'Courier New';
+    font-size: 20px;
+}
+
+.likes:hover {
+    background-color: rgb(136, 138, 32);
+  }

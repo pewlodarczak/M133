@@ -24,6 +24,12 @@
 
 				</div>
 				<div>
+					<p><%= image.numLikes %></p>
+				</div>
+				<div>
+					<button onclick="window.location.href='/clicked/click?name=<%=image.name%>'">Like</button>
+				</div>
+				<div>
 					<td><a href="/delete/delete?name=<%=image.name%>">Delete</a></td>
 				</div>
 				<br>

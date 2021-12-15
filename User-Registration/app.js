@@ -103,6 +103,7 @@ app.post('/', upload.single('image'), (req, res, next) => {
 		name: req.body.name,
 		desc: req.body.desc,
 		userid: loggedinUser,
+		numLikes: '0',
 		img: {
 			data: fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.filename)),
 			contentType: 'image/png'
@@ -127,14 +128,12 @@ app.get('/userimages', isLoggedIn, (req, res) => {
 			res.status(500).send('An error occurred', err);
 		}
 		else {
-			res.render('displayImg', { items: items });
+			res.render('displayImgnew', { items: items });
 		}
 	});
 });
 
-
 app.get("/delete/*",(req,res)=>{
-
 	const {id, name} = req.query;
 	imgModel.deleteOne({name: name}, function(err){
 		if(err){
@@ -157,6 +156,46 @@ app.get('/userprofile', async(req, res) => {
 		}
 	});
 });
+
+app.get('/clicked/*', async(req, res) => {
+	const {id, name} = req.query;
+	let img = await imgModel.findOne({name: name});
+	let likes = img.numLikes;
+	imgModel.findOneAndUpdate({name: name}, {numLikes: ++likes}, function(err, doc) {
+		if (err) {
+			return res.send(500, {error: err});
+		}  else {
+			res.redirect("/userimages")
+		}
+	});
+});
+
+/*
+app.post('/clicked', (req, res) => {
+	const click = {clickTime: new Date()};
+	console.log(click);
+
+//app.post("/index/:id", function (req, res) {
+    imgModel.findById(req.params.id, function (err, res) {
+        if (err) {
+            console.log(err);
+        } else {
+			console.log('update')
+            res.likes += 1;
+            res.save();
+            console.log(res.likes);
+            res.send({likeCount: res.likes});
+        }
+    });
+});*/
+/*
+app.get('/clicks', (req, res) => {
+	imgModel.findById(req.params.id, (err, result) => {
+	  if (err)
+	  	return console.log(err);
+	  res.send(result);
+	});
+});*/
 
 //Auth Routes
 app.get("/login",(req,res)=>{
