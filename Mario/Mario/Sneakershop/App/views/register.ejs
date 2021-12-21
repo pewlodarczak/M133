@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SneakerWebshop</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!--enable mobile device-->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--fontawesome css-->
+      <link rel="stylesheet" href="/views/css/font-awesome.min.css">
+      <!--bootstrap css-->
+      <link rel="stylesheet" href="/views/css/bootstrap.min.css">
+      <!--animate css-->
+      <link rel="stylesheet" href="/views/css/animate-wow.css">
+      <!--main css-->
+      <link rel="stylesheet" href="/views/css/style.css">
+      <link rel="stylesheet" href="/views/css/bootstrap-select.min.css">
+      <link rel="stylesheet" href="/views/css/slick.min.css">
+      <!--responsive css-->
+      <link rel="stylesheet" href="/views/css/responsive.css">
+      <link rel="stylesheet" href="/views/css/login.css">
+   </head>
+   <body>
+      <%- include('navbar', {active: "navbar.ejs"}); %>
+      <div class="grid">
+         <form action="/register" method="POST" class="form login">
+            <div class="form__field">
+               <label for="email">
+                  <span class="hidden">Email</span></label>
+               <input autocomplete="email" id="username" type="text" name="email" class="form__input" placeholder="Email" required>
+               </div>
+               
+               <div class="form__field">
+               <label for="phone">
+                  <span class="hidden">Phonenumber</span></label>
+               <input autocomplete="phone" id="phone" type="text" name="phone" class="form__input" placeholder="Phonenumber" required>
+               </div>
+      
+            <div class="form__field">
+               <label for="password">
+               <span class="hidden">Password</span></label>
+               <input id="password" type="password" name="password" class="form__input" placeholder="Password" required>
+            </div>
+      
+            <div class="form__field">
+               <input type="submit" value="Sign Up">
+            </div>
+     
+         </form>
+     </div>
+   
+      <%- include('footer', {active: "footer.ejs"}); %>
+      <!--main js--> 
+      <script src="js/jquery-1.12.4.min.js"></script> 
+      <!--bootstrap js--> 
+      <script src="js/bootstrap.min.js"></script> 
+      <script src="js/bootstrap-select.min.js"></script>
+      <script src="js/slick.min.js"></script> 
+      <script src="js/wow.min.js"></script>
+      <!--custom js--> 
+      <script src="js/custom.js"></script>
+   </body>
+</html>

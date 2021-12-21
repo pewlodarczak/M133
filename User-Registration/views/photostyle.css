@@ -40,12 +40,16 @@ label {
     font-weight: bold;
 }
 
-.likes {
-    background-color: rgb(236, 238, 136);
-    font-family:'Courier New';
-    font-size: 20px;
-}
-
 .likes:hover {
     background-color: rgb(136, 138, 32);
-  }
+}
+
+.likes {
+    background: url('/img/like.png') no-repeat;
+    background-size: cover;
+    float: center;
+    border: 0;
+    width: 50px;
+    height: 50px;
+    font-size: 15px;
+}
