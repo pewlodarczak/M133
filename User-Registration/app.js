@@ -179,6 +179,7 @@ app.get("/data", (req, res) => {
 		.catch(err => res.status(500).end());
 });
 
+
 const messages = ['Start Chatting!'];
 
 socketServer.on('connection', (socketClient) => {
