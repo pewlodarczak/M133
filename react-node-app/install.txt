@@ -1,0 +1,35 @@
+# Install Express
+mkdir react-node-app
+cd react-node-app
+npm init -y
+npm i express
+npm install nodemon
+npm start
+
+npm run dev
+
+npm run build
+
+# Install React
+npx create-react-app client
+
+cd client
+npm start
+
+# push to git
+
+
+# Deploy on Heroku
+cd client
+rm -rf .git
+
+npm i -g heroku
+heroku login
+
+git init
+heroku git:remote -a insert-your-app-name-here
+git add .
+git commit -am "Deploy app to Heroku"
+
+git push heroku master
+
