@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SneakerWebshop</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--enable mobile device-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--fontawesome css-->
+    <link rel="stylesheet" href="/views/css/font-awesome.min.css" />
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="/views/css/bootstrap.min.css" />
+    <!--animate css-->
+    <link rel="stylesheet" href="/views/css/animate-wow.css" />
+    <!--main css-->
+    <link rel="stylesheet" href="/views/css/style.css" />
+    <link rel="stylesheet" href="/views/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="/views/css/slick.min.css" />
+    <!--responsive css-->
+    <link rel="stylesheet" href="/views/css/responsive.css" />
+    <link rel="stylesheet" href="/views/css/login.css" />
+  </head>
+  <body>
+    <%- include('navbar', {active: "navbar.ejs"}); %>
+    <div class="page-content-product">
+      <div class="main-product setusers">
+        <div class="container">
+          <div class="row clearfix"></div>
+          <div class="product-sh">
+            <form action="/searchuser" method="post">
+               <div class="col-sm-6">
+                  <div class="form-sh">
+                     <input type="text" name="usertextfield" placeholder="Search a User" >
+                  </div>
+               </div>
+               <div class="col-sm-3">    
+                  <div class="form-sh"><input type="submit" value="Search"></div>                      
+               </div>
+            </form>
+         </div>
+         </div>
+          <% usersArray.forEach(function(user) { %>
+          <div class="row clearfix dahboardusers">
+            <th>Email: <%= user.username %></th>
+            <td>Phonenumber: <%= user.phone %></td>
+            <td>Usertype: <%= user.userType %></td>
+            <span class="spanbuttons">
+              <td>
+                <form action="/changeuserType" method="post">      
+                    <input type="hidden" name="changeUserType" value=<%= user.userType %>></input>
+                    <input class="custom-b" type="submit" >Change UserType</input>
+                </form>    
+                <form action="/deleteuser"method="post">
+                    <input type="hidden" name="usertodelete" value=<%= user._id %> ></input>
+                    <input class="custom-b" type="submit" value="Delete User"> </input>
+                </form>
+                <br />
+              </td>
+            </span>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+
+    <%- include('footer', {active: "footer.ejs"}); %>
+    <!--main js-->
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <!--bootstrap js-->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <!--custom js-->
+    <script src="js/custom.js"></script>
+  </body>
+</html>

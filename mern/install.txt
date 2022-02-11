@@ -1,0 +1,17 @@
+mkdir movies-app
+cd movies-app
+npm init -y
+
+npm install express body-parser cors mongoose nodemon
+
+mkdir routes controllers
+
+http://localhost:3000/api/movie
+
+http://127.0.0.1:27017/cinema
+
+npm install -g npm@[version.number]
+
+npx create-react-app client
+cd client
+yarn start

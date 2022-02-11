@@ -1,0 +1,32 @@
+* {
+    font-family: Verdana;
+  }
+h1 {
+    text-align: center;
+}
+div {
+    font-size: 25px;
+    margin: 2px;
+    text-align: center;
+}
+body {
+  background-image: url('/img/background.jpg');
+  background-size: cover;
+}
+hr {
+    border: 1px solid grey;
+}
+  
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}

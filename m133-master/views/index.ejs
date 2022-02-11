@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SneakerWebshop</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!--enable mobile device-->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--fontawesome css-->
+      <link rel="stylesheet" href="/views/css/font-awesome.min.css">
+      <!--bootstrap css-->
+      <link rel="stylesheet" href="/views/css/bootstrap.min.css">
+      <!--animate css-->
+      <link rel="stylesheet" href="/views/css/animate-wow.css">
+      <!--main css-->
+      <link rel="stylesheet" href="/views/css/style.css">
+      <link rel="stylesheet" href="/views/css/bootstrap-select.min.css">
+      <link rel="stylesheet" href="/views/css/slick.min.css">
+      <!--responsive css-->
+      <link rel="stylesheet" href="/views/css/responsive.css">
+   </head>
+   <body>
+      <%- include('navbar', {active: "navbar.ejs"}); %>
+      <div class="page-content-product">
+         <div class="main-product">
+            <div class="container">
+               <div class="row clearfix"></div>
+                  <div class="find-box">
+                     <h1>Top Sneakers of the day<br>find your new pair of shoes today</h1>
+                     <h4>It has never been easier</h4>
+                     <div class="product-sh">
+                        <form action="/" method="post">
+                           <div class="col-sm-6">
+                              <div class="form-sh">
+                                 <input type="text" name="textfield" placeholder="Search your favourite pair of shoes" >
+                              </div>
+                           </div>
+                           <div class="col-sm-3">    
+                              <div class="form-sh"><input type="submit" value="Search"></div>                      
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+               
+               <div class="row clearfix">
+                  <% DisplayProducts.forEach(function(product) { %>
+                  <div class="col-lg-3 col-sm-6 col-md-3">                 
+                        <div class="box-img">
+                           <h4><%= product.name %></h4>
+                           <<img src="data:/<%=product.img.contentType%>;base64,
+                           <%=product.img.data.toString('base64')%>">
+                           <h4><%= product.price %></h4>
+                        </div>
+                  </div>
+                  <% }) %>
+               </div>
+             
+            </div>
+         </div>
+      </div>
+      <div class="cat-main-box">
+         <div class="container">
+            <div class="row panel-row">
+               <div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.0s">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <img src="images/xpann-icon.jpg" class="icon-small" alt="">
+                        <h4>“Chamb” Your Business</h4>
+                        <p>Grow easily with chamb. Create free account.
+                           We help expanding your business easily.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <img src="images/create-icon.jpg" class="icon-small" alt="">
+                        <h4>Create and add</h4>
+                        <p>Grow easily with chamb. Create free account.
+                           We help expanding your business easily.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6 wow fadeIn hidden-sm" data-wow-delay="0.4s">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <img src="images/get-icon.jpg" class="icon-small" alt="">
+                        <h4>Get inspired</h4>
+                        <p>Grow easily with chamb. Create free account.
+                           We help expanding your business easily.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <%- include('footer', {active: "footer.ejs"}); %>
+      <!--main js--> 
+      <script src="js/jquery-1.12.4.min.js"></script> 
+      <!--bootstrap js--> 
+      <script src="js/bootstrap.min.js"></script> 
+      <script src="js/bootstrap-select.min.js"></script>
+      <script src="js/slick.min.js"></script> 
+      <script src="js/wow.min.js"></script>
+      <!--custom js--> 
+      <script src="js/custom.js"></script>
+   </body>
+</html>

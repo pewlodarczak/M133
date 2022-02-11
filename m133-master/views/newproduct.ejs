@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SneakerWebshop</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--enable mobile device-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--fontawesome css-->
+    <link rel="stylesheet" href="/views/css/font-awesome.min.css" />
+    <!--bootstrap css-->
+    <link rel="stylesheet" href="/views/css/bootstrap.min.css" />
+    <!--animate css-->
+    <link rel="stylesheet" href="/views/css/animate-wow.css" />
+    <!--main css-->
+    <link rel="stylesheet" href="/views/css/style.css" />
+    <link rel="stylesheet" href="/views/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="/views/css/slick.min.css" />
+    <!--responsive css-->
+    <link rel="stylesheet" href="/views/css/responsive.css" />
+    <link rel="stylesheet" href="/views/css/login.css" />
+  </head>
+  <body>
+    <%- include('navbar', {active: "navbar.ejs"}); %>
+    <h4>
+		To Upload Image on mongoDB
+	</h4>
+	<hr>
+	<div>
+		<form action="/" method="POST" enctype="multipart/form-data">
+			<div>
+				<label for="name">Image Title</label>
+				<input type="text" id="name" placeholder="Name"
+					value="" name="product" required>
+			</div>
+			<br>
+			<div>
+				<label for="price">Image Title</label>
+				<input type="number" id="price" placeholder="Price"
+					value="" name="product" required>
+			</div>
+			<br>
+			<div>
+				<label for="image">Upload Image</label>
+				<input type="file" id="image"
+					name="product" value="" required>
+			</div>
+			<div>
+				<button type="submit">Submit</button>
+			</div>
+		</form>
+	</div>
+    <%- include('footer', {active: "footer.ejs"}); %>
+    <!--main js-->
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <!--bootstrap js-->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <!--custom js-->
+    <script src="js/custom.js"></script>
+  </body>
+</html>

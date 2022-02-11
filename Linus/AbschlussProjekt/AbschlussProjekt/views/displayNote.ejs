@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uploaded Notes</title>
+    <link rel="stylesheet" href="/views/photostyle.css">
+</head>
+<body>
+    <h1>
+		Your Notes
+	</h1>
+	<div>
+		<% items.forEach(function(note) { %>
+		<div>
+			<div>
+				<div>
+					<h5><%= note.title %></h5>
+					<p><%= note.note %></p>
+				</div>
+			</div>
+		</div>
+		<% }) %>
+	</div>
+    <h1>
+		<ul>
+		<li><a href="/uploadNote">Upload Notes</a></li>
+		<li><a href="/logout">Logout</a></li>
+	</ul>
+	</h1>
+	<div>
+
+		<input type="button" onclick="location.href='/';" value="Index page" />
+	</div>
+
+
+</body>
+</html>
